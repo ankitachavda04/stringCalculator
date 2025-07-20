@@ -15,3 +15,7 @@ test("returns number itself when single number is passed", () => {
 test("returns addition of two comma separated numbers", () => {
   expect(add("1,1")).toBe(2);
 });
+
+test("returns addition of multiple comma separated numbers", () => {
+  expect(add("1,1,2,3,5,8")).toBe(20);
+});
