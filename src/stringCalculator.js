@@ -12,6 +12,7 @@ export default function add(numbers) {
     }
     const sum = splitNumbers
                 .map(Number)
+                .filter((num) => num <= 1000)
                 .reduce((acc, curr) => acc + curr, 0);
     return sum;
 }
@@ -22,3 +23,5 @@ console.log(add("10"));
 console.log(add("10,10"));
 console.log(add("10\n20,30\n40"));
 console.log(add("//?;\n10;20"));
+console.log(add("//?;\n10;1000"));
+console.log(add("1001,20"));
