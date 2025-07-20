@@ -1,10 +1,11 @@
 {
   "name": "stringcalculator",
   "version": "1.0.0",
+  "type": "module",
   "description": "string calculator using tdd for Incubyte interview",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,11 @@
     "url": "https://github.com/ankitachavda04/stringCalculator/issues"
   },
   "homepage": "https://github.com/ankitachavda04/stringCalculator#readme",
-  "devDependencies": {
-    "jest": "^30.0.4"
+  "dependencies": {
+    "jest": "^29.7.0",
+    "jest-circus": "^29.7.0"
+  },
+  "jest": {
+    "transform": {}
   }
 }
