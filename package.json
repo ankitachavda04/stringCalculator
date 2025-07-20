@@ -1,0 +1,22 @@
+{
+  "name": "stringcalculator",
+  "version": "1.0.0",
+  "description": "string calculator using tdd for Incubyte interview",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankitachavda04/stringCalculator.git"
+  },
+  "author": "Ankita Chavda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankitachavda04/stringCalculator/issues"
+  },
+  "homepage": "https://github.com/ankitachavda04/stringCalculator#readme",
+  "devDependencies": {
+    "jest": "^30.0.4"
+  }
+}
