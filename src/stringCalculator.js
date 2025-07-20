@@ -1,32 +1,43 @@
+const MAX_NUMBER = 1000;
 export default function add(numbers) {
     if (!numbers || numbers.trim() === "") return 0;
     let delimiters = [",", "\n"];
 
     if (numbers.startsWith("//")) {
-        const splitInput = numbers.split("\n");
-        const extractDelimiters = splitInput[0].slice(2);
-        numbers = splitInput[1];
+        const [getDelimiterPart, getNumberPart] = numbers.split("\n");
+        const delimiterPart = getDelimiterPart.slice(2);
+        numbers = getNumberPart;
 
-        const handleCustomDelimiters = extractDelimiters.match(/\[.*?]/g);
+        const multipleDelimiters = getDelimiterPart.match(/\[.*?]/g);
 
-        if (handleCustomDelimiters) {
-            delimiters = handleCustomDelimiters.map(d =>
-                d.slice(1, -1)
-            );
+        if (multipleDelimiters) {
+            delimiters = multipleDelimiters
+                            .map(d =>
+                                d.slice(1, -1)
+                            );
         }  else {
-            delimiters = [extractDelimiters];
+            delimiters = [delimiterPart];
+        }
+
+        if (delimiters.some(d => d === "")) {
+            throw new Error("Empty delimiter is not allowed");
         }
     }
 
-    const splitRegex = new RegExp(delimiters.map(escapeRegExp).join("|"));
-    const splitNumbers = numbers.split(splitRegex).map(Number);
+    const splitRegex = new RegExp(delimiters
+                        .map(escapeRegExp)
+                        .join("|"));
+    const splitNumbers = numbers
+                        .split(splitRegex)
+                        .map(Number);
     const negativeNumbers = splitNumbers
                             .filter(num => num < 0);
+
     if (negativeNumbers.length) {
         throw new Error(`Negatives are not allowed: ${negativeNumbers.join(",")}`);
     }
     const sum = splitNumbers
-                .filter((num) => num <= 1000 && !isNaN(num))
+                .filter((num) => num <= MAX_NUMBER && !isNaN(num))
                 .reduce((acc, curr) => acc + curr, 0);
     return sum;
 }
@@ -34,15 +45,3 @@ export default function add(numbers) {
 function escapeRegExp(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
-
-console.log(add(""));  
-console.log(add(" ")); 
-console.log(add("10"));     
-console.log(add("10,10"));      
-console.log(add("10\n20,30\n40"));      
-console.log(add("//;\n10;20"));     
-console.log(add("//;\n10;1000"));    
-console.log(add("1001,20"));        
-console.log(add("//[***]\n10***20***30"));
-console.log(add("//[*][%]\n10*20%30"));
-console.log(add("//[**][%%]\n10**20%%30"));
