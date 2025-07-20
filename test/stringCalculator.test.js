@@ -27,3 +27,7 @@ test("allow new line between numbers as delimiter", () => {
 test("support different delimiters", () => {
     expect(add("//;\n1;2")).toBe(3);
 });
+
+test("negative numbers to throw exception", () => {
+  expect(() => add("-1,2")).toThrow("Negatives are not allowed: -1");
+});
