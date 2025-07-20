@@ -19,3 +19,7 @@ test("returns addition of two comma separated numbers", () => {
 test("returns addition of multiple comma separated numbers", () => {
   expect(add("1,1,2,3,5,8")).toBe(20);
 });
+
+test("allow new line between numbers as delimiter", () => {
+    expect(add("1\n2,3")).toBe(6);
+});
