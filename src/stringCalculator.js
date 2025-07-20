@@ -5,8 +5,12 @@ export default function add(numbers) {
         [delimiters, numbers] = numbers.split("\n");
         delimiters = new RegExp(`[${delimiters.slice(2)}]`);
     }
-    //const numbersWithoutDelimiters = numbers.split(delimiters);
-    const sum = numbers.split(delimiters)
+    const splitNumbers = numbers.split(delimiters);
+    const negativeNumbers = splitNumbers.filter(num => num < 0);
+    if (negativeNumbers.length) {
+        throw new Error(`Negatives are not allowed: ${negativeNumbers.join(",")}`);
+    }
+    const sum = splitNumbers
                 .map(Number)
                 .reduce((acc, curr) => acc + curr, 0);
     return sum;
