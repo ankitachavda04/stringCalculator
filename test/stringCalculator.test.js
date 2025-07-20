@@ -39,3 +39,7 @@ test("numbers till 1000 should not be ignored", () => {
 test("numbers bigger than 1000 should be ignored", () => {
   expect(add("2,1002")).toBe(2);
 });
+
+test("delimiters of any length to be supported", () => {
+  expect(add("//[***]\n1***2***3")).toBe(6);
+});
