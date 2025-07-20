@@ -45,3 +45,4 @@ export default function add(numbers) {
 function escapeRegExp(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+
