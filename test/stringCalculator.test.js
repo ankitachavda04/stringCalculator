@@ -31,3 +31,11 @@ test("support different delimiters", () => {
 test("negative numbers to throw exception", () => {
   expect(() => add("-1,2")).toThrow("Negatives are not allowed: -1");
 });
+
+test("numbers till 1000 should not be ignored", () => {
+  expect(add("2,\n1000")).toBe(1002);
+});
+
+test("numbers bigger than 1000 should be ignored", () => {
+  expect(add("2,1002")).toBe(2);
+});
